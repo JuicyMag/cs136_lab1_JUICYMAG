@@ -71,20 +71,19 @@ public class CoinStrip{
         boolean gameHasFinished = true;
 
         for(int k = 0; k < myBoard.length; k++){
-          //if visual[k].equals what the fuck does this need to equal to check if game is live?
 
 
             gameHasFinished = false ;  //do I need anything else to end loop?
         
 
             if (gameHasFinished){
-            gameInSession= false; 
-            System.out.println ("Game Over!");
+                gameInSession= false; 
+                System.out.println ("Game Over!");
 
                 if(player1Turn){
-                System.out.println("Player 1 is the WINNER");
+                    System.out.println("Player 1 is the WINNER");
                 }else{
-                System.out.println("Player 2 is the WINNER");
+                    System.out.println("Player 2 is the WINNER");
             }
     
          while(gameInSession){
@@ -92,13 +91,12 @@ public class CoinStrip{
             //able to print message conditional on whose turn it is
             if(player1Turn){
                 System.out.println("Player 1 - it's your move!");
-            }else{
-                System.out.println("Player 2 - please make a move!");
+                }else{
+                    System.out.println("Player 2 - please make a move!");
             }
-            } 
+         }
 
-           // int moveForCoinSelected = Math.abs(in.nextInt()) ; // User tells computer how much to move selected coin 
-            //int coinSelected = sc.nextInt(); // Tells computer which coin I am referring to
+
         }
     }
     
@@ -129,9 +127,9 @@ public class CoinStrip{
             coins = sc.nextInt(); // this is important, this is how many coins are selected 
         }
 
-
+        System.out.println(coins);
         //creating board given number of coins that are selected 
-        int boardSize = rngMain.nextInt(3) + 2 ; 
+        int boardSize = coins*(rngMain.nextInt(3) + 2) ; 
 
         //creating new coinstrip
         CoinStrip board = new CoinStrip(coins, boardSize);
