@@ -43,6 +43,30 @@ public class CoinStrip{
 
     }
 
+
+    public String toString(){
+
+        String board = ""; 
+
+        for(int i = 0; i < myBoard.length; i++){
+            // if it IS a coin
+            if(myBoard[i] != 0){
+                //then add
+                board = board + "x|"; 
+            } else {
+                board = board + "_|"; 
+            }
+
+        }
+
+        return board;
+
+    }
+
+
+
+
+
     public void gameOver(){
         boolean gameHasFinished = true;
 
@@ -80,93 +104,51 @@ public class CoinStrip{
     
 }
 
-    public String toString(){
-
-        String board = ""; 
-
-        for(int i = 0; i < myBoard.length; i++){
-            // if it IS a coin
-            if(myBoard[i] != 0){
-                //then add
-                board = board + "x|"; 
-            } else {
-                board = board + "_|"; 
-            }
-
-        }
-
-        return board;
-
-    }
+   
 
 
    
     public static void main(String[] args){
+        // new random number generator 
         Random rngMain = new Random(); 
+
+        //new scanner to take in coins
         Scanner sc = new Scanner(System.in); 
+
+        //prints question, number of coins
         System.out.println("How many coins would you like to play with? Minimum = 4 coins, and Maximum = 8 coins"); 
 
 
-
+        //NUMBER OF COINS = input from user 
         int coins = sc.nextInt(); 
-        
+
+
+        //checks to see if value of coin is between 4 and 8
         while(coins < 4 || coins > 8){
             System.out.println("INVALID INPUT -Please pick another value");
             coins = sc.nextInt(); // this is important, this is how many coins are selected 
         }
 
 
-        
+        //creating board given number of coins that are selected 
         int boardSize = rngMain.nextInt(3) + 2 ; 
+
+        //creating new coinstrip
         CoinStrip board = new CoinStrip(coins, boardSize);
 
 
 
-
-        // defining coins outside of while loop
-        
-        
-         //CoinStrip c = new CoinStrip(5, 10);
         System.out.println(board.toString());
 
         //creating scanner, allows for interaction and allows for user to input the number of coins
         
 
-        // I am not sure the OPTIMAL way to have a min and max constraint but it seemed logical to tell the user that there is a
-        // min and max choice, there are trolls in this world that would mash their keyboards and create 430965243523 coins... can't allow
-       
-
-
-        //able to track if the game is in session or not
+      
        
 
         
     } 
 
-        // Next logical step is to PLACE the coins given I have created how many exist
-        // only way to place a coin is to check ALL conditions, while, if, for, etc
-
-        // //conditions 
-        // int oldMove = myBoard[coins]
-        // int newMove = myBoard[coins] - moveForCoinSelected; 
-
-        // if(coins>= 0 && coins<sizeBoard.length){
-
-        //     // need to be able to keep track of the old position and current position in case of violation of coniditions           
-
-        // }
-
-
-        // // while the user puts in values that ARE NOT VALID, read them their error and prompt them to re-enter a valid value
-        // // to commence game
-
-        
-
-        // //enables me to have a min of 4 and max of 8
-        // int a = 4+rng.nextInt(5); 
-
-        // given the user can vary the size of the coins played with, I need the board to vary in size, I handle this generating 
-        // that is between 2 and 5. [2,5] acts a constant that is randomly generated to vary the size of the board. I want there to be some variability in the 
-        // game so that it is not mundane
+     
        
 }
