@@ -17,30 +17,71 @@ public class CoinStrip{
     boolean gameInSession = true; 
     
     int[] myBoard; // stores all values
-        
+
+    int coins; 
+
     public CoinStrip(int numCoins, int size){ //I use numCoins in public static void main
+        coins = numCoins ; 
         myBoard = new int[size];
+        Scanner scan = new Scanner(System.in); 
 
         for(int i = 0 ; i < myBoard.length; i++){
             myBoard[i] = 0; 
         }
 
-            
-            int k = 0; 
 
+        int k = 0; 
         
-            while(k < numCoins){
-                int test = rng.nextInt(myBoard.length);
-                if(myBoard[test] == 0){
-                    myBoard[test] = 1;
-                    k++; 
+        while(k < numCoins){
+            int test = rng.nextInt(myBoard.length);
+            if(myBoard[test] == 0){
+                myBoard[test] = 1;
+                k++; 
 
-                } 
+            } 
 
+
+        }
+
+        while(!gameOver()){
+            System.out.println(toString());
+
+            System.out.println("What coin do you want to move");
+            int coinSelected = scan.nextInt(); 
+
+            System.out.println("How far do you want to move?");
+            int movesChoosen = scan.nextInt(); 
+
+            
+
+        }
+
+
+    }
+
+    public void findAndMove(int coin, int sizeMove){
+
+        int i = 0;
+        int pos = 0;
+        while(i < coin){
+            if(myBoard[pos] == 1){
+                i++;
+            } 
+            pos++; 
+            // myBoard[pos]
+        } 
+        pos--;//overshoot at the last case compensation
+
+        for(int h = 1; h <= sizeMove; i++){
+            if(pos - sizeMove > 0){
+                if((myBoard[pos] - sizeMove) == 0 ){
+                    pos = pos - sizeMove; 
+                }
 
             }
 
-
+        } 
+        
     }
 
 
@@ -67,45 +108,52 @@ public class CoinStrip{
 
 
 
-    public void gameOver(){
-        boolean gameHasFinished = true;
+    public boolean gameOver(){
 
-        for(int k = 0; k < myBoard.length; k++){
-
-
-            gameHasFinished = false ;  //do I need anything else to end loop?
-        
-
-            if (gameHasFinished){
-                gameInSession= false; 
-                System.out.println ("Game Over!");
-
-                if(player1Turn){
-                    System.out.println("Player 1 is the WINNER");
-                }else{
-                    System.out.println("Player 2 is the WINNER");
+        for(int i = 0; i < coins ; i++){
+            if(myBoard[i] == 0){
+                return false; 
             }
-    
-         while(gameInSession){
-
-            //able to print message conditional on whose turn it is
-            if(player1Turn){
-                System.out.println("Player 1 - it's your move!");
-                }else{
-                    System.out.println("Player 2 - please make a move!");
-            }
-         }
 
 
         }
+        return true; 
     }
+
+
+    //         gameHasFinished = false ;  //do I need anything else to end loop?
+
+
+    //         if (gameHasFinished){
+    //             gameInSession= false; 
+    //             System.out.println ("Game Over!");
+
+    //             if(player1Turn){
+    //                 System.out.println("Player 1 is the WINNER");
+    //             } else{
+    //                 System.out.println("Player 2 is the WINNER");
+    //         }
     
-}
+    //      while(gameInSession){
 
-   
+    //         //able to print message conditional on whose turn it is
+    //         if(player1Turn){
+    //             System.out.println("Player 1 - it's your move!");
+    //             }else{
+    //                 System.out.println("Player 2 - please make a move!");
+    //         }
+    //      }
 
 
-   
+    //     }
+    // }
+    
+
+
+
+
+
+
     public static void main(String[] args){
         // new random number generator 
         Random rngMain = new Random(); 
@@ -127,7 +175,6 @@ public class CoinStrip{
             coins = sc.nextInt(); // this is important, this is how many coins are selected 
         }
 
-        System.out.println(coins);
         //creating board given number of coins that are selected 
         int boardSize = coins*(rngMain.nextInt(3) + 2) ; 
 
@@ -135,18 +182,19 @@ public class CoinStrip{
         CoinStrip board = new CoinStrip(coins, boardSize);
 
 
-
         System.out.println(board.toString());
+
+
+        
 
         //creating scanner, allows for interaction and allows for user to input the number of coins
         
 
-      
-       
+
+
 
         
     } 
 
-     
-       
+
 }
